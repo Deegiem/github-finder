@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 import ProfileCard from './components/ProfileCard';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false); // No localStorage, pure state
+  const [darkMode, setDarkMode] = useState(false); 
   const [username, setUsername] = useState('octocat');
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,6 @@ function App() {
 
 
     useEffect(() => {
-    // Apply/remove Tailwind's .dark class
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -49,11 +48,7 @@ function App() {
   };
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 ease-in-out ${
-        darkMode ? 'bg-[#060b15]' : 'bg-[#f3f8fe]'
-      }`}
-    >
+    <div className={`min-h-screen transition-colors duration-500 ease-in-out ${darkMode ? 'bg-[#060b15]' : 'bg-[#f3f8fe]'}`}>
       <div className="container mx-auto px-5 py-8 max-w-6xl">
         <Header darkMode={darkMode} onThemeChange={toggleDarkMode} />
 
@@ -67,7 +62,7 @@ function App() {
         ) : (
           <div
             className={`rounded-lg shadow-md p-8 text-center transition-colors duration-500 ease-in-out ${
-              darkMode ? 'bg-[#1c2235] text-gray-200' : 'bg-white text-gray-900'
+              darkMode ? 'bg-[#1e2a48] text-gray-200' : 'bg-white text-gray-900'
             }`}
           >
             <p>{error || 'No user data available'}</p>

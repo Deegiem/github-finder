@@ -34,7 +34,7 @@ function SearchBar({ onSearch, error, loading, darkMode }) {
         <button
           type="submit"
           disabled={loading}
-          className={`absolute right-2 px-6 py-2.5 rounded-[10px] transition-colors ${
+          className={`absolute right-1.5 px-6 py-2.5 rounded-[10px] transition-colors ${
             loading
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-blue-500 hover:bg-blue-600 text-white'
