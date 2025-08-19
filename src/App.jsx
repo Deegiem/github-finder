@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import ProfileCard from './components/ProfileCard';
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false); 
@@ -48,26 +49,31 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 ease-in-out ${darkMode ? 'bg-[#060b15]' : 'bg-[#f3f8fe]'}`}>
-      <div className="container mx-auto px-5 py-8 max-w-6xl">
-        <Header darkMode={darkMode} onThemeChange={toggleDarkMode} />
+      <div>
+        <Helmet>
+          <title>Github Finder</title>
+        </Helmet>
+        <div className={`min-h-screen transition-colors duration-500 ease-in-out ${darkMode ? 'bg-[#060b15]' : 'bg-[#f3f8fe]'}`}>
+          <div className="container mx-auto px-5 py-8 max-w-6xl">
+            <Header darkMode={darkMode} onThemeChange={toggleDarkMode} />
 
-        <SearchBar darkMode={darkMode} onSearch={handleSearch} error={error} loading={loading} />
-        {loading && !userData ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            <SearchBar darkMode={darkMode} onSearch={handleSearch} error={error} loading={loading} />
+            {loading && !userData ? (
+              <div className="flex items-center justify-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+              </div>
+            ) : userData ? (
+              <ProfileCard darkMode={darkMode} userData={userData} />
+            ) : (
+              <div
+                className={`rounded-lg shadow-md p-8 text-center transition-colors duration-500 ease-in-out ${
+                  darkMode ? 'bg-[#1e2a48] text-gray-200' : 'bg-white text-gray-900'
+                }`}
+              >
+                <p>{error || 'No user data available'}</p>
+              </div>
+            )}
           </div>
-        ) : userData ? (
-          <ProfileCard darkMode={darkMode} userData={userData} />
-        ) : (
-          <div
-            className={`rounded-lg shadow-md p-8 text-center transition-colors duration-500 ease-in-out ${
-              darkMode ? 'bg-[#1e2a48] text-gray-200' : 'bg-white text-gray-900'
-            }`}
-          >
-            <p>{error || 'No user data available'}</p>
-          </div>
-        )}
       </div>
     </div>
   );
